@@ -10,6 +10,8 @@ class TypeScriptCompletionListener(sublime_plugin.EventListener):
         ], sublime.INHIBIT_WORD_COMPLETIONS | sublime.INHIBIT_EXPLICIT_COMPLETIONS)
 
     def on_query_completions(self, view, prefix, locations):
+        if not view.file_name():
+            return []
         if not view.file_name().endswith('.re'):
             # .re ファイル以外は無視
             return []
